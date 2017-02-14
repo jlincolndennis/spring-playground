@@ -49,4 +49,25 @@ public class EndpointsControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().string("You deleted the H*CK out of that table, brah!"));
     }
+
+    @Test
+    public void testQuery1Endpoint() throws Exception {
+        this.mvc.perform(get("/query1?awesome=true").accept(MediaType.ALL))
+                .andExpect(status().isOk())
+                .andExpect(content().string("This response is awesome: true"));
+    }
+
+    @Test
+    public void testQuery2Endpoint() throws Exception {
+        this.mvc.perform(get("/query2?taste=yummy&price=99").accept(MediaType.ALL))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{taste=yummy, price=99}"));
+    }
+
+    @Test
+    public void testQuery3Endpoint() throws Exception {
+        this.mvc.perform(get("/query3?race=dwarf&job=cleric&hp=78").accept(MediaType.ALL))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{race=dwarf, job=cleric, hp=78}"));
+    }
 }
