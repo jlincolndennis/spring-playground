@@ -70,4 +70,25 @@ public class EndpointsControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(content().string("{race=dwarf, job=cleric, hp=78}"));
     }
+
+    @Test
+    public void testPathVariable1Endpoint() throws Exception {
+        this.mvc.perform(get("/posts/77").accept(MediaType.ALL))
+                .andExpect(status().isOk())
+                .andExpect(content().string("The Post Id is: 77"));
+    }
+
+    @Test
+    public void testPathVariable2Endpoint() throws Exception {
+        this.mvc.perform(get("/posts/99/comments/33").accept(MediaType.ALL))
+                .andExpect(status().isOk())
+                .andExpect(content().string("{postId=99, commentId=33}"));
+    }
+
+    @Test
+    public void testPathVariable3Endpoint() throws Exception {
+        this.mvc.perform(get("/users/1/true").accept(MediaType.ALL))
+                .andExpect(status().isOk())
+                .andExpect(content().string("User is: 1; Admin? true"));
+    }
 }

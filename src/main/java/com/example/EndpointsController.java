@@ -1,10 +1,6 @@
 package com.example;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
@@ -52,6 +48,23 @@ public class EndpointsController {
     public String getParamsAsClass(Adventurer adventurer){
         return adventurer.toString();
     }
+
+    @GetMapping("/posts/{postId}")
+    public  String getPathVariableByName(@PathVariable int postId){
+        return String.format("The Post Id is: %d", postId);
+    }
+
+    @GetMapping("/posts/{postId}/comments/{commentId}")
+    public String getPathVariablesAsObject(@PathVariable Map pathVariables){
+        return pathVariables.toString();
+    }
+
+    @GetMapping("/users/{id}/{admin}")
+    public String getPathVariablesAsClass(User user){
+        return String.format("User is: %h; Admin? %b", user.getId(), user.isAdmin());
+    }
+
+
 
 
 
