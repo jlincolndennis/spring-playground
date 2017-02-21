@@ -164,6 +164,12 @@ class ApiToken {
 
 class Ability extends ApiToken {}
 
+class test {
+    private int nummmm;
+    private String strgfsdg;
+
+}
+
 class Stats {
     private Stat stat;
     private int effort;
